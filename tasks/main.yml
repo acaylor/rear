@@ -1,0 +1,13 @@
+---
+# tasks file for rear
+- name: Include tasks for rear
+  include_tasks: "{{ rear_tasks }}"
+  with_first_found:
+    - "rear-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "rear-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+    - "rear-{{ ansible_distribution }}.yml"
+    - "rear-{{ ansible_os_family }}.yml"
+  loop_control:
+    loop_var: rear_tasks
+- name: Include tasks for rear config
+  include_tasks: rear-config.yml

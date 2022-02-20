@@ -1,0 +1,6 @@
+{{ ansible_managed }}
+OUTPUT=ISO
+OUTPUT_URL=nfs://{{ nfs_server }}/{{ nfs_dir }}
+BACKUP=NETFS
+BACKUP_URL=nfs://{{ nfs_server }}/{{ nfs_dir }}
+BACKUP_PROG_EXCLUDE=( '/media' '/var/tmp' '/var/crash')

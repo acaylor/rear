@@ -1,0 +1,22 @@
+#Configure ReaR config file
+- name: ReaR config file
+  template:
+    src: templates/local.conf.j2
+    dest: /etc/rear/local.conf
+    owner: root
+    group: root
+    mode: '0600'
+#Configure cron job to run backup
+- name: enable crontab task
+  set_fact:
+    rear_cron: true
+  when: "rear_cron_min is defined and rear_cron_hour is defined"
+- name: configure cron job for ReaR
+  cron:
+    name: "ReaR backup crontab"
+    minute: "{{ rear_cron_min }}"
+    hour: "{{ rear_cron_hour }}"
+    user: "{{ rear_cron_user }}"
+    weekday: "{{ rear_cron_day }}"
+    job: "/usr/sbin/rear -d -v mkbackup"
+  when: rear_cron

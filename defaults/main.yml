@@ -1,0 +1,8 @@
+---
+# defaults file for ReaR
+redhat_pkgs: rear, syslinux, genisoimage
+deb_pkgs: rear
+rear_cron_user: root
+rear_cron_day: "0"
+nfs_server: "127.0.0.1"
+nfs_dir: "backup_dir"
