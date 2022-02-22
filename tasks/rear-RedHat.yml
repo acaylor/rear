@@ -3,3 +3,15 @@
   dnf:
     name: genisoimage, rear, syslinux
     state: present
+- name: configure crond
+  block:
+    - name: install cronie to provide crond
+      dnf:
+        name: cronie
+        state: present
+    - name: enable crond
+      service:
+        name: crond
+        state: started
+        enabled: yes
+  when: "rear_cron_min is defined and rear_cron_hour is defined"
