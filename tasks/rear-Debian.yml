@@ -1,0 +1,5 @@
+#Task to install packages
+- name: install ReaR
+  apt:
+    name: rear, extlinux
+    state: present
